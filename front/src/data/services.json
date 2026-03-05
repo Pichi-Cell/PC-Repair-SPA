@@ -1,0 +1,38 @@
+[
+    {
+        "id": 1,
+        "title": "Laptop Repair",
+        "desc": "Screen replacements, battery issues, and motherboard diagnostics.",
+        "icon": "LaptopMedical"
+    },
+    {
+        "id": 2,
+        "title": "Custom Builds",
+        "desc": "High-performance gaming rigs and workstations.",
+        "icon": "Microchip"
+    },
+    {
+        "id": 3,
+        "title": "Data Recovery",
+        "desc": "Recovering lost files from corrupted drives.",
+        "icon": "Hdd"
+    },
+    {
+        "id": 4,
+        "title": "Network Setup",
+        "desc": "Home and office networking, routers, and firewalls.",
+        "icon": "NetworkWired"
+    },
+    {
+        "id": 5,
+        "title": "Server Maintenance",
+        "desc": "Enterprise server setup and routine health checks.",
+        "icon": "Server"
+    },
+    {
+        "id": 6,
+        "title": "General Diagnostics",
+        "desc": "Not sure what is wrong? We will find the issue.",
+        "icon": "Tools"
+    }
+]
