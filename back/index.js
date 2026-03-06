@@ -1,10 +1,13 @@
 import express from 'express';
 import cors from 'cors';
 import sequelize from './config/database.js';
+import bcrypt from 'bcryptjs';
 import healthRoutes from './routes/healthRoutes.js';
 import serviceRoutes from './routes/serviceRoutes.js';
 import inquiryRoutes from './routes/inquiryRoutes.js';
+import authRoutes from './routes/authRoutes.js';
 import Service from './models/Service.js';
+import User from './models/User.js';
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -16,6 +19,7 @@ app.use(express.json());
 app.use('/api/health', healthRoutes);
 app.use('/api/services', serviceRoutes);
 app.use('/api/inquiries', inquiryRoutes);
+app.use('/api/auth', authRoutes);
 
 // Database Initialization & Seeding
 const initDB = async () => {
@@ -39,6 +43,17 @@ const initDB = async () => {
             ];
             await Service.bulkCreate(initialServices);
             console.log('Database seeded with initial services');
+        }
+
+        // Seed initial admin user if no users exist
+        const userCount = await User.count();
+        if (userCount === 0) {
+            const hashedPassword = await bcrypt.hash('admin123', 10);
+            await User.create({
+                username: 'admin',
+                password: hashedPassword
+            });
+            console.log('Database seeded with default admin user (admin/admin123)');
         }
     } catch (error) {
         console.error('Unable to connect to the database:', error);
